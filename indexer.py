@@ -26,6 +26,7 @@ class DocumentIndexer:
         self,
         chroma_db_path: str,
         embedding_model: str,
+        device: str = "cpu",
         collection_name: str = "documents"
     ):
         """
@@ -34,6 +35,7 @@ class DocumentIndexer:
         Args:
             chroma_db_path: Path to ChromaDB database
             embedding_model: Name of model for creating embeddings
+            device: Device for embedding model (cpu, cuda, rocm)
             collection_name: Name of collection in ChromaDB
         """
         self.chroma_db_path = chroma_db_path
@@ -50,7 +52,8 @@ class DocumentIndexer:
 
         # Load embedding model
         print(f"Loading embedding model: {embedding_model}")
-        self.embedding_model = SentenceTransformer(embedding_model)
+        print(f"Using device: {device}")
+        self.embedding_model = SentenceTransformer(embedding_model, device=device)
 
         # Get or create collection
         self.collection = self.client.get_or_create_collection(
@@ -180,6 +183,7 @@ def main():
     embedding_model = os.getenv('EMBEDDING_MODEL', 'intfloat/multilingual-e5-large')
     chunk_size = int(os.getenv('CHUNK_SIZE', '1000'))
     chunk_overlap = int(os.getenv('CHUNK_OVERLAP', '200'))
+    device = os.getenv('DEVICE', 'cpu')
 
     # Check if documents folder exists
     if not Path(docs_path).exists():
@@ -190,7 +194,8 @@ def main():
     # Create indexer
     indexer = DocumentIndexer(
         chroma_db_path=chroma_db_path,
-        embedding_model=embedding_model
+        embedding_model=embedding_model,
+        device=device
     )
 
     # Index all documents

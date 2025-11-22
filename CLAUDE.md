@@ -2,6 +2,16 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+# Project Rules
+
+**CRITICAL**: For ANY question about myself:
+1. ALWAYS call document-search MCP server FIRST
+2. Never answer from general knowledge without checking document-search
+3. If document-search returns results, use ONLY that information
+
+## When to use document-search
+- Questions about me
+
 ## Project Overview
 
 This is a document search system that indexes documents into a ChromaDB vector database and provides semantic search capabilities through an MCP server for Claude Code. The system supports Russian and English languages and uses multilingual embeddings for semantic search.
@@ -124,4 +134,3 @@ Update `EMBEDDING_MODEL` in `.env`. For Russian language support, recommended mo
 ### Adjusting Chunk Size
 
 Modify `CHUNK_SIZE` and `CHUNK_OVERLAP` in `.env`. Smaller chunks provide more precise results but require more storage and may lose context.
-- Use document-search to answer any question
