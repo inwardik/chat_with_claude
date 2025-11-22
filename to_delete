@@ -1,0 +1,14 @@
+# Путь к папке с документами для индексации
+DOCS_PATH=R:\proj\documents
+
+# Путь к векторной базе данных
+CHROMA_DB_PATH=R:\proj\chroma_db
+
+# Модель для создания эмбеддингов (рекомендуется для русского языка)
+EMBEDDING_MODEL=intfloat/multilingual-e5-large
+
+# Размер чанков текста (в символах)
+CHUNK_SIZE=1000
+
+# Перекрытие между чанками
+CHUNK_OVERLAP=200

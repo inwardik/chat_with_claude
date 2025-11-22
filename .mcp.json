@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "document-search": {
+      "command": "uv",
+      "args": [
+        "run",
+        "mcp_server.py"
+      ],
+      "env": {
+        "DOCS_PATH": "./documents",
+        "CHROMA_DB_PATH": "./chroma_db",
+        "EMBEDDING_MODEL": "intfloat/multilingual-e5-large",
+        "CHUNK_SIZE": "1000",
+        "CHUNK_OVERLAP": "200"
+      }
+    }
+  }
+}
